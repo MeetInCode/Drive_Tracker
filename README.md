@@ -42,7 +42,7 @@ graph TD
 - [Node.js](https://nodejs.org/) (v18 or higher)
 - [Google Cloud Platform](https://cloud.google.com/) account with Drive API enabled
 - OAuth2 credentials (Client ID and Client Secret)
-- A publicly accessible webhook URL (e.g., using [ngrok](https://ngrok.com/))
+- [ngrok](https://ngrok.com/) for exposing your local server to the internet
 
 ## 📥 Installation
 
@@ -71,6 +71,37 @@ graph TD
    # Ngrok or Public Webhook URL
    NGROK_WEBHOOK=your_webhook_url
    ```
+
+## 🔌 Ngrok Setup
+
+1. Install ngrok:
+
+   - Windows (using Chocolatey): `choco install ngrok`
+   - macOS (using Homebrew): `brew install ngrok`
+   - Linux: Download from [ngrok website](https://ngrok.com/download)
+
+2. Sign up for a free ngrok account at [ngrok.com](https://ngrok.com)
+
+3. Get your authtoken from the ngrok dashboard and configure it:
+
+   ```bash
+   ngrok config add-authtoken your_ngrok_auth_token
+   ```
+
+4. Start ngrok to expose your local server:
+
+   ```bash
+   ngrok http 3000
+   ```
+
+5. Copy the HTTPS URL provided by ngrok (e.g., `https://abc123.ngrok.io`)
+
+6. Update your `.env` file with the ngrok URL:
+   ```env
+   NGROK_WEBHOOK=https://abc123.ngrok.io
+   ```
+
+> **Note**: The ngrok URL changes each time you restart ngrok unless you have a paid account. You'll need to update your `.env` file and restart the application when this happens.
 
 ## 🚀 Usage
 
